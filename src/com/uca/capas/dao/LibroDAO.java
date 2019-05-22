@@ -10,5 +10,5 @@ import com.uca.capas.domain.Libro;
 public interface LibroDAO {
 
 	public List<Libro> findAll() throws DataAccessException;
-	public Libro findOne(Integer code) throws DataAccessException;
+	public List<Libro> busqueda(String valor, String opcion) throws DataAccessException;
 }

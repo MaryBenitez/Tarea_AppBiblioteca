@@ -7,9 +7,11 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Repository;
 
 import com.uca.capas.domain.Libro;
 
+@Repository
 public class LibroDAOImpl implements LibroDAO {
 
 	@PersistenceContext(unitName="capas")
@@ -26,9 +28,32 @@ public class LibroDAOImpl implements LibroDAO {
 	}
 
 	@Override
-	public Libro findOne(Integer code) throws DataAccessException {
+	public List<Libro> busqueda(String valor, String opcion) throws DataAccessException {
 		// TODO Auto-generated method stub
-		return null;
+		StringBuffer sb = new StringBuffer();
+		List<Libro> resultado;
+		
+		if(opcion.equals("Autor")) {
+			sb.append("select * from public.Libro where autor = :autor ");
+			Query consulta = entityManager.createNativeQuery(sb.toString(), Libro.class);
+			consulta.setParameter("autor", valor);
+			resultado = consulta.getResultList();
+		}
+		else if(opcion.equals("ISBN")) {
+			sb.append("select * from public.Libro where isbn = :isbn ");
+			Query consulta = entityManager.createNativeQuery(sb.toString(), Libro.class);
+			consulta.setParameter("isbn", valor);
+			 resultado = consulta.getResultList();
+
+		}
+		else {
+			sb.append("select * from public.Libro where genero = :genero ");
+			Query consulta = entityManager.createNativeQuery(sb.toString(), Libro.class);
+			consulta.setParameter("genero", valor);
+			resultado = consulta.getResultList();
+		}
+		
+		return resultado;
 	}
 	
 	

@@ -1,11 +1,15 @@
 package com.uca.capas.domain;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
+@Entity
+@Table(schema="public", name="libro")
 public class Libro {
 	
 	@Id
@@ -24,20 +28,20 @@ public class Libro {
 	private String genero;
 	
 	@Column(name="isbn")
-	private String ISBN;
+	private String isbn;
 	
 	@Column(name="existencia")
 	private int cant_exist;
 	
 	public Libro() {}
 	
-	public Libro(int id_libro, String titulo, String autor, String genero, String iSBN, int cant_exist) {
+	public Libro(int id_libro, String titulo, String autor, String genero, String isbn, int cant_exist) {
 		super();
 		this.id_libro = id_libro;
 		this.titulo = titulo;
 		this.autor = autor;
 		this.genero = genero;
-		ISBN = iSBN;
+		this.isbn = isbn;
 		this.cant_exist = cant_exist;
 	}
 	
@@ -73,12 +77,12 @@ public class Libro {
 		this.genero = genero;
 	}
 
-	public String getISBN() {
-		return ISBN;
+	public String getIsbn() {
+		return isbn;
 	}
 
-	public void setISBN(String iSBN) {
-		ISBN = iSBN;
+	public void setISBN(String isbn) {
+		this.isbn = isbn;
 	}
 
 	public int getCant_exist() {
