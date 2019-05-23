@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %> 
+<%String criterio = request.getParameter("seleccionar"); %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>RESULTADO DE LBUSQUEDA</title>
 </head>
 <body>
+	<h1>Se encontraron <c:out value="${Cantidad_Entidades}"></c:out> resultados para <c:out value="${buscar}"></c:out> en <%=criterio%></h1><br><br>
 	<table>
 		<tr>
 			<th>TITULO</th>

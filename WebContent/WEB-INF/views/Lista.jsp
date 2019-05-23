@@ -5,9 +5,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>LIBROS</title>
 </head>
 <body>
+	<h1>hay <c:out value="${Total_Existencia_L}"></c:out> libros en existencia, y <c:out value="${Cantidad_Autores}"></c:out> cantidad de autores diferentes</h1><br><br>
 	<table>
 		<tr>
 			<th>TITULO</th>

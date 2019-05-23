@@ -1,5 +1,6 @@
 package com.uca.capas.dao;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -55,7 +56,68 @@ public class LibroDAOImpl implements LibroDAO {
 		
 		return resultado;
 	}
-	
+
+	@Override
+	public BigInteger suma() throws DataAccessException {
+		// TODO Auto-generated method stub
+		StringBuffer sb = new StringBuffer();
+		sb.append("select sum(existencia) from public.Libro");
+		Query consulta = entityManager.createNativeQuery(sb.toString());
+		BigInteger resultado = (BigInteger)consulta.getSingleResult();
+		
+		return resultado;
+	}
+
+	@Override
+	public BigInteger contar(String autor, String opcion) throws DataAccessException {
+		// TODO Auto-generated method stub
+		StringBuffer sb = new StringBuffer();
+		BigInteger resultado;
+		
+		if(opcion.equals("Autor")) {
+			sb.append("select count(autor) from public.Libro where autor = :autor");
+			Query consulta = entityManager.createNativeQuery(sb.toString());
+			consulta.setParameter("autor", autor);
+			resultado = (BigInteger)consulta.getSingleResult();			
+		}
+		else if(opcion.equals("ISBN")) {
+			sb.append("select count(autor) from public.Libro where isbn = :isbn");
+			Query consulta = entityManager.createNativeQuery(sb.toString());
+			consulta.setParameter("isbn", autor);
+			resultado = (BigInteger)consulta.getSingleResult();	
+		}
+		else {
+			sb.append("select count(autor) from public.Libro where genero = :genero");
+			Query consulta = entityManager.createNativeQuery(sb.toString());
+			consulta.setParameter("genero", autor);
+			resultado = (BigInteger)consulta.getSingleResult();	
+		}
+		
+		
+		return resultado;
+	}
+
+	@Override
+	public BigInteger suma2() throws DataAccessException {
+		// TODO Auto-generated method stub
+		StringBuffer sb = new StringBuffer();
+		sb.append("select sum(existencia) from public.Libro ");
+		Query consulta = entityManager.createNativeQuery(sb.toString());
+		BigInteger resultado = (BigInteger)consulta.getSingleResult();
+		
+		return resultado;
+	}
+
+	@Override
+	public BigInteger contar2() throws DataAccessException {
+		// TODO Auto-generated method stub
+		StringBuffer sb = new StringBuffer();
+		sb.append("select count(autor) from public.Libro ");
+		Query consulta = entityManager.createNativeQuery(sb.toString());
+		BigInteger resultado = (BigInteger)consulta.getSingleResult();
+		
+		return resultado;
+	}
 	
 
 }

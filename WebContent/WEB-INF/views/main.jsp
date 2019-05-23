@@ -9,14 +9,16 @@
 <title>BIBLIOTECA</title>
 </head>
 <body>
-	<h1>Buscar por:</h1>
+	<h1>BIBLIOTECA</h1>
 	<form:form action="${pageContext.request.contextPath}/BuscarLibro" method="POST">
+		<label>Buscar libro por:</label>
 		<select name="seleccionar">
 			<option value="Seleccione">Seleccione</option>
 			<option value="Autor">Autor</option>
 			<option value="ISBN">ISBN</option>
 			<option value="Genero">Genero</option>
 		</select>
+		<br><br>
 		<input type="text" name="buscar">
 		<input type="submit" value="Buscar">
 	<br><br>
